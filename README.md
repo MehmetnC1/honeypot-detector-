@@ -1,52 +1,55 @@
 # Honeypot Detector
 
-Wireless honeypot detector built with Scapy and Rich.
+Lightweight wireless honeypot detector built with Scapy and Rich.
 
 ## Author
 
-GitHub profile: [MehmetnC1](https://github.com/MehmetnC1)
+GitHub: [MehmetnC1](https://github.com/MehmetnC1)
 
 ## Quick Start
 
-Clone the public repository, then run the installer:
+Clone the repository and run the installer (the repository for this workspace is already pushed):
 
 ```bash
-git clone https://github.com/MehmetnC1/honeypot-detector.git
-cd honeypot-detector
+git clone https://github.com/MehmetnC1/honeypot-detector-
+cd honeypot-detector-
 chmod +x install.sh
 ./install.sh
 ```
 
-After installation, use the installed command from the local virtual environment:
+Activate the local virtual environment and run the detector:
 
 ```bash
+source .venv/bin/activate
 sudo .venv/bin/honeypot-detector --target-ssid Net_Test --channel 44
 ```
 
-## Configuration
+## Usage
 
-The tool is designed to be used without editing the code. Pass your own values at runtime:
+Common examples:
 
 ```bash
+# show help
 sudo .venv/bin/honeypot-detector --help
+
+# sniff on a specific monitor interface and managed interface
 sudo .venv/bin/honeypot-detector --interface wlan0mon --managed-interface wlo1 --target-ssid Net_Test --channel 44
-sudo .venv/bin/honeypot-detector --target-ssid MyHotspot --channel 44
-sudo .venv/bin/honeypot-detector --no-auto-channel --target-ssid MyHotspot
+
+# disable automatic channel detection
+sudo .venv/bin/honeypot-detector --no-auto-channel --target-ssid MyHotspot --channel 44
 ```
 
-Environment variables are also supported:
+Environment variables (alternative):
 
 ```bash
-INTERFACE=wlan0mon
-MANAGED_INTERFACE=wlo1
-TARGET_SSID=MyHotspot
-TARGET_CHANNEL=44
-LURE_PREFIX=TrapNet
+export INTERFACE=wlan0mon
+export MANAGED_INTERFACE=wlo1
+export TARGET_SSID=MyHotspot
+export TARGET_CHANNEL=44
+export LURE_PREFIX=TrapNet
 ```
 
-## Manual Run
-
-If you prefer not to use the installer, create the virtual environment manually:
+## Manual installation (without `install.sh`)
 
 ```bash
 python3 -m venv .venv
@@ -56,13 +59,22 @@ python -m pip install -e .
 sudo .venv/bin/honeypot-detector --target-ssid MyHotspot --channel 44
 ```
 
-## Repository Cleanup
+## Notes
 
-The repository is intentionally kept source-only. Generated artifacts such as packet captures, logs, caches, and virtual environments are ignored by `.gitignore` and should not be committed.
+- The detector requires a wireless interface in monitor mode to sniff probe responses. Use a separate managed interface for active scans if available.
+- Common cause of missed packets: monitor interface tuned to a different band (2.4 GHz vs 5 GHz). Use `--channel` or automatic channel detection to align interfaces.
 
-## Publish to GitHub
+## Repository
 
-1. Create a public repository named `honeypot-detector` under the [MehmetnC1](https://github.com/MehmetnC1) account.
-2. Push this project to that repository.
-3. Keep `.gitignore` in place so generated files stay out of the repo.
-4. Share the repository URL so others can clone and install it with the commands above.
+This repository is already pushed to your GitHub account at:
+
+https://github.com/MehmetnC1/honeypot-detector-
+
+If you want the repository name without the trailing hyphen, let me know and I can help rename it and fix URLs.
+
+## Contributing
+
+Pull requests, issues and improvements are welcome. If you add features, keep generated artifacts out of the repo and update `README.md` accordingly.
+
+---
+
