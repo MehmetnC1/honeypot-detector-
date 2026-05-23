@@ -1,0 +1,15 @@
+.venv/
+myenv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.pcap
+*.pcapng
+honeypot_detector.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
